@@ -1,0 +1,33 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+{% for post in posts %}
+<div class="card">
+<div class="card-content">
+
+  <h4>{{ post.title }}</h4>
+
+  <article class="post">
+    <p>{{ post.content | truncate(200) }}</p>
+  </article>
+
+  <h6>Comments: {{ post.comments|length }}</h6>
+
+  <div>
+    Tags:
+    {% for tag in post.tags %}
+      <div class="chip blue lighten-4">{{ tag.name }}</div>
+    {% endfor %}
+  </div>
+  <div class="right-align">
+      <a class="waves-effect waves-light btn red darken-1 confirmation" href="{{ path('blog_destroy_post', {id: post.id, '_method': 'DELETE'})}}"> <i class="material-icons">clear_all</i></a>
+      <a class="waves-effect waves-light btn green dark-3" href="{{ path('blog_edit_post', {id: post.id})}}"> <i class="material-icons">subject</i></a>
+      <a class="waves-effect waves-light btn blue darken-2" href="{{ path('blog_post', {id: post.id})}}"> <i class="material-icons">visibility</i></a>
+  </div>
+  </div>
+  </div>
+{% endfor %}
+
+</div>
+{% endblock %}

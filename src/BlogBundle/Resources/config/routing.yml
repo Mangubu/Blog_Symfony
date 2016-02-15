@@ -1,0 +1,66 @@
+blog_homepage:
+    path:     /
+    defaults: { _controller: BlogBundle:Post:index }
+
+blog_post:
+    path:     /posts/{id}
+    defaults: { _controller: BlogBundle:Post:show }
+    requirements:
+        id: \d+
+
+blog_posts:
+    path:     /posts
+    defaults: { _controller: BlogBundle:Post:index }
+
+blog_destroy_post:
+    path:     /posts/{id}
+    methods:  [DELETE]
+    defaults: { _controller: BlogBundle:Post:destroy }
+
+blog_edit_post:
+    path:     /posts/{id}/edit
+    defaults: { _controller: BlogBundle:Post:edit }
+    requirements:
+        id: \d+
+
+blog_new_post:
+    path:     /posts/new
+    defaults: { _controller: BlogBundle:Post:new }
+
+blog_new_category:
+    path:     /categories/new
+    defaults: { _controller: BlogBundle:Category:new }
+
+blog_categories:
+    path:     /categories
+    defaults: { _controller: BlogBundle:Category:index }
+
+blog_edit_category:
+    path:     /categories/{id}/edit
+    defaults: { _controller: BlogBundle:Category:edit }
+    requirements:
+        id: \d+
+
+blog_new_user:
+    path:     /users/new
+    defaults: { _controller: BlogBundle:User:new }
+
+blog_create_session:
+    path:     /sessions/
+    methods:  [POST]
+    defaults: { _controller: BlogBundle:Session:create }
+
+blog_new_session:
+    path:     /sessions/new
+    defaults: { _controller: BlogBundle:Session:new }
+
+blog_destroy_session:
+    path:     /sessions/
+    methods:  [DELETE]
+    defaults: { _controller: BlogBundle:Session:create }
+
+blog_new_post_comment:
+    path:     /posts/{postId}/comments/new
+    defaults: { _controller: BlogBundle:Comment:new }
+    requirements:
+        postId: \d+

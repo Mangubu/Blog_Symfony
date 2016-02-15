@@ -1,0 +1,10 @@
+.inputChipContainer{
+  height: 100%;
+  display: inline-block;
+}
+
+.inputChip, .inputChip:focus:not([readonly]), .inputChip:active, .inputChip:hover{
+  height: 100% !important;
+  border: none !important;
+  box-shadow: none !important;
+}

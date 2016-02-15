@@ -1,0 +1,32 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+<h3>{{ post.title }}</h3>
+{% if is_granted('ROLE_ADMIN') %}
+  <a class="waves-effect waves-light btn red darken-1 confirmation" href="{{ path('blog_destroy_post', {id: post.id, '_method': 'DELETE'})}}">Destroy</a>
+  <a class="waves-effect waves-light btn deep-purple lighten-3" href="{{ path('blog_edit_post', {id: post.id})}}">Edit</a>
+{% endif %}
+<p>Category: {{ post.category.name }}</p>
+<article class="post">
+  <p>{{ post.content }}</p>
+</article>
+
+<div>
+  {% for tag in post.tags %}
+  <div class="chip">{{ tag.name }}</div>
+  {% endfor %}
+</div>
+
+<div class="row comments">
+  {% for comment in post.comments %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{comment.author.username}}</span>
+      <p>{{ comment.content }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{{ render(controller('BlogBundle:Comment:new', {'postId': post.id})) }}
+{% endblock %}

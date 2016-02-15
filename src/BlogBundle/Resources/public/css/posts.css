@@ -1,0 +1,23 @@
+.picker__box .picker__date-display{
+  background-color: #1e88e5;
+}
+
+.picker__date-display .picker__weekday-display{
+  background-color: #1976d2;
+}
+
+.picker__day.picker__day--today, .picker__close, .picker__today{
+  color: #1e88e5;
+}
+
+td[role=presentation] .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected{
+  background-color: #1e88e5;
+}
+
+.comments{
+  margin: 60px 0px 20px 0;
+}
+
+.post{
+  margin-bottom: 20px;
+}

@@ -1,0 +1,43 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        BlogBundle\Entity\User: plaintext
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        user_provider:
+            entity:
+                class: BlogBundle\Entity\User
+
+    role_hierarchy:
+        ROLE_ADMIN:    ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+            #anonymous: true
+            pattern: ^/
+            provider: user_provider
+            form_login:
+                login_path: blog_new_session
+                check_path: blog_create_session
+                default_target_path: blog_homepage
+            logout:
+                path: blog_destroy_session
+                target: blog_homepage
+    access_control:
+        # require ROLE_ADMIN for /admin*
+        - { path: ^/admin/, roles: ROLE_ADMIN }

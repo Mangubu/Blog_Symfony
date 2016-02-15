@@ -1,0 +1,33 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+
+{% block body %}
+<div class="row">
+{% for post in posts %}
+<div class="card">
+<div class="card-content">
+  <h3>{{ post.title }}</h3>
+  <h4>Category: {{ post.category.name }}</h4>
+
+  <article class="post">
+    <p>{{ post.content }}</p>
+  </article>
+
+  <div>
+    Tags:
+    {% for tag in post.tags %}
+      <div class="chip red lighten-4">{{ tag.name }}</div>
+    {% endfor %}
+  </div>
+  <div class="right-align">
+    <a class="waves-effect waves-light btn red darken-2" href="{{ path('blog_post', {id: post.id})}}">Read</a>
+  </div>
+  </div>
+  </div>
+{% endfor %}
+<a href="{{ path('blog_posts')}}">
+  <div class="card-panel center-align red darken-1 white-text">
+    <h3>All posts</h3>
+  </div>
+</a>
+</div>
+{% endblock %}

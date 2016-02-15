@@ -1,0 +1,29 @@
+<nav>
+  <div class="nav-wrapper  red lighten-1">
+    <a href="/" class="brand-logo">HOME</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {% if app.user %}
+      <li><a class='dropdown-button' href='#' data-activates='dropdownCategory'>Categories</a></li>
+      <ul id='dropdownCategory' class='dropdown-content'>
+        <li><a href="{{ path('blog_categories') }}">All categories</a></li>
+        <li><a href="{{ path('blog_new_category') }}">New category</a></li>
+      </ul>
+      <li><a class='dropdown-button' href='#' data-activates='dropdownPost'>Post</a></li>
+      <ul id='dropdownPost' class='dropdown-content'>
+        <li><a href="{{ path('blog_posts') }}">Posts</a></li>
+        <li><a href="{{ path('blog_new_post') }}">New post</a></li>
+      </ul>
+      {% endif %}
+
+      {% if app.user %}
+      <li><a class='dropdown-button' href='#' data-activates='dropdownUser'>User: {{app.user.username}}</a></li>
+      <ul id='dropdownUser' class='dropdown-content'>
+        <li><a href="{{ path('blog_destroy_session', {'_method': 'DELETE'}) }}">Sign out</a></li>
+      </ul>
+      {% else %}
+        <li><a href="{{ path('blog_new_user') }}">Sign up</a></li>
+        <li><a href="{{ path('blog_new_session') }}">Sign in</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
